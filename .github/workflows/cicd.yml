@@ -57,5 +57,5 @@ jobs:
       - name: trggger lava job
         run: |
           sudo apt install lavacli -y
-          lavacli --uri http://admin:${{ secrets.LAVA_TOKEN}}@45.253.65.23:45056/RPC2/ jobs submit ./qemu-test/qemu-riscv64-helloworld-test.yamll
+          lavacli --uri http://admin:${{ secrets.LAVA_TOKEN}}@45.253.65.23:45056/RPC2/ jobs submit ./qemu-test/qemu-riscv64-helloworld-test.yaml
         
