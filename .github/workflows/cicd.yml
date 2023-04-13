@@ -34,7 +34,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install Dependency
         run: |
-          sudo apt install make flex bison bc gcc-riscv64-linux-gnu -y
+          sudo apt install make flex bison bc gcc-riscv64-linux-gnu git -y
           riscv64-linux-gnu-gcc -v
       # Runs a set of commands using the runners shell
       - name: Build
@@ -46,15 +46,15 @@ jobs:
       
       # Runs a set of commands using the runners shell
       - name: Deploy
-        # uses: JamesIves/github-pages-deploy-action@v4.4.1
-        # with:
-        #   ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        #   BRANCH: deploy
-        #   FOLDER: kernel_image
-        uses: peaceiris/actions-gh-pages@v3.9.3
-        with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
-          publish_dir: ./kernel_image
+        run: |
+          cd kernel_image
+          git init
+          git remote add origin https://${{ secrets.GITLAB_NAME }}:${{ secrets.PWD }}@gitlab.com/jean9823/kernel-image.git
+          git checkout -b main
+          git add --all
+          git commit -m "deploy kernel image"
+          git push origin main -f
+          cd ..
       
       - name: Checkout Lava Job
         uses: actions/checkout@v3
@@ -62,4 +62,4 @@ jobs:
       - name: Trggger Lava Job
         run: |
           sudo apt install lavacli -y
-          lavacli --uri http://admin:${{ secrets.LAVA_TOKEN}}@47.241.70.72:12360/RPC2/ jobs submit ./qemu-test/qemu-riscv64-helloworld-test.yaml
+          lavacli --uri http://admin:${{ secrets.LAVA_TOKEN}}@45.253.65.23:45056/RPC2/ jobs submit ./qemu-test/qemu-riscv64-helloworld-test.yaml
