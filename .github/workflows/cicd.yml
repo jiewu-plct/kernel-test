@@ -51,7 +51,7 @@ jobs:
           git init
           git config --global user.email ${{ secrets.GITLAB_EMAIL }}
           git config --global user.name ${{ secrets.GITLAB_NAME }}
-          git remote add origin https://${{ secrets.GITLAB_NAME }}:${{ secrets.PWD }}@gitlab.com/jean9823/kernel-image.git
+          git remote add origin https://${{ secrets.GITLAB_NAME }}:${{ secrets.GITLAB_PWD }}@gitlab.com/jean9823/kernel-image.git
           git checkout -b main
           git add --all
           git commit -m "deploy kernel image"
