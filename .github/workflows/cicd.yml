@@ -25,7 +25,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - namw: Checkout Kernel Source Code
+        uses: actions/checkout@v3
         with:
           repository: torvalds/linux
           ref: master
@@ -51,11 +52,10 @@ jobs:
           BRANCH: deploy
           FOLDER: kernel_image
       
-      - name: checkout lava job
+      - name: Checkout Lava Job
         uses: actions/checkout@v3
 
-      - name: trggger lava job
+      - name: Trggger Lava Job
         run: |
           sudo apt install lavacli -y
           lavacli --uri http://admin:${{ secrets.LAVA_TOKEN}}@47.241.70.72:12360/RPC2/ jobs submit ./qemu-test/qemu-riscv64-helloworld-test.yaml
-        
