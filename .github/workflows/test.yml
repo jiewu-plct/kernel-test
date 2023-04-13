@@ -34,7 +34,7 @@ jobs:
           ./helloworld.out
           mkdir hello
           cp ./helloworld.out hello
-          print https://${{ secrets.GITLAB_NAME }}:${{ secrets.PWD }}@gitlab.com/jean9823/kernel-image.git
+          echo "https://${{ secrets.GITLAB_NAME }}:${{ secrets.PWD }}@gitlab.com/jean9823/kernel-image.git"
 
       - name: Deploy
         run: |
