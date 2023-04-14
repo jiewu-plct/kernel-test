@@ -42,7 +42,7 @@ actions:
     images:
       kernel:
         image_arg: -kernel {kernel}
-        url: https://gitlab.com/jean9823/kernel-image/-/raw/main/Image
+        url: https://github.com/jiewu-plct/kernel-test/raw/deploy/Image
       rootfs:
         image_arg: -drive file={rootfs},format=raw,id=hd0
         url: file:///home/inlinepath/rootfs.img
