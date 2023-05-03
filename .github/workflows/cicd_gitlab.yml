@@ -39,6 +39,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build
         run: |
+          echo "CONFIG_NFS_V3=y" >> defconfig
+          echo "CONFIG_NFS_V3_ACL=y" >> defconfig
+          echo "CONFIG_NFS_ACL_SUPPORT=y" >> defconfig
+          echo "CONFIG_NFS_COMMON=y" >> defconfig
           make ARCH=riscv defconfig
           make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- -j $(nproc)
           mkdir kernel_image
