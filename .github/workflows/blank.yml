@@ -39,8 +39,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build
         run: |
-          wget https://raw.githubusercontent.com/jiewu-plct/kernel-test/main/defconfig
-          cp defconfig arch/riscv/configs/defconfig
           make ARCH=riscv defconfig
           make ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- -j $(nproc)
           mkdir kernel_image
