@@ -34,6 +34,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install Dependency
         run: |
+          sudo apt update
           sudo apt install make flex bison bc gcc-riscv64-linux-gnu git -y
           riscv64-linux-gnu-gcc -v
       # Runs a set of commands using the runners shell
